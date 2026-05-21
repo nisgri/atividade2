@@ -16,6 +16,7 @@ import jakarta.validation.Valid;
 
 import java.util.*;
 
+import br.com.serratec.atividade2.dto.LancamentoVendasResponseDTO;
 import br.com.serratec.atividade2.service.LancamentoService;
 
 @RestController
@@ -26,15 +27,16 @@ public class LancamentoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public LancamentoVendas inserirLancamento(@Valid @RequestBody LancamentoVendas lancamento) {
+    public LancamentoVendasResponseDTO inserirLancamento(@Valid @RequestBody LancamentoVendas lancamento) {
         return service.inserirLancamento(lancamento);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<LancamentoVendas> listarPorId(@PathVariable Long id) {
+    public ResponseEntity<LancamentoVendasResponseDTO> listarPorId(@PathVariable Long id) {
         Optional<LancamentoVendas> lancamento= service.listarPorId(id);
         if(lancamento.isPresent()) {
-            return ResponseEntity.ok(lancamento.get());
+            LancamentoVendasResponseDTO dto= new LancamentoVendasResponseDTO(lancamento.get().getData(), lancamento.get().getValor(), lancamento.get().getVendedor().getNome());
+            return ResponseEntity.ok(dto);
         }
         return ResponseEntity.notFound().build();
     }

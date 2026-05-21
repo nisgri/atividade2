@@ -1,11 +1,11 @@
 package br.com.serratec.atividade2.model;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
+@DiscriminatorValue("AUTONOMO")
 public class VendedorAutonomo extends Vendedor {
-    @NotNull(message= "Preencha a comissão.")
     private Double comissao;
 
     public Double getComissao() {

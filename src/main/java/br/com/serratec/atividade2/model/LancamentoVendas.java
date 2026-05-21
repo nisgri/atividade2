@@ -17,7 +17,6 @@ public class LancamentoVendas {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    @NotNull(message= "Preencha a data.")
     private LocalDateTime data;
 
     @NotNull(message= "Preencha o valor.")

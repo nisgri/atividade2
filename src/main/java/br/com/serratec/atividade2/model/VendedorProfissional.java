@@ -1,11 +1,11 @@
 package br.com.serratec.atividade2.model;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.validation.constraints.NotBlank;
 
 @Entity
+@DiscriminatorValue("PROFISSIONAL")
 public class VendedorProfissional extends Vendedor {
-    @NotBlank(message= "Preencha o CNPJ.")
     private String cnpj;
 
     public String getCnpj() {
